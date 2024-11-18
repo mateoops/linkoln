@@ -2,10 +2,11 @@ package handlers
 
 import (
 	"context"
-	"mateoops/linkoln/models"
-	"mateoops/linkoln/repositories"
-	"mateoops/linkoln/services"
 	"net/http"
+
+	"github.com/mateoops/linkoln/models"
+	"github.com/mateoops/linkoln/repositories"
+	"github.com/mateoops/linkoln/services"
 
 	"github.com/gin-gonic/gin"
 )

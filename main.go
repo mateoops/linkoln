@@ -1,8 +1,9 @@
 package main
 
 import (
-	handler "mateoops/linkoln/handlers"
 	"net/http"
+
+	handler "github.com/mateoops/linkoln/handlers"
 
 	"github.com/gin-gonic/gin"
 )

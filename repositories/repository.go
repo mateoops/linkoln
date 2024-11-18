@@ -2,7 +2,8 @@ package repositories
 
 import (
 	"context"
-	models "mateoops/linkoln/models"
+
+	"github.com/mateoops/linkoln/models"
 
 	"log"
 	"os"

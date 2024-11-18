@@ -1,4 +1,4 @@
-module mateoops/linkoln
+module github.com/mateoops/linkoln
 
 go 1.23.3
 

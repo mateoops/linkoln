@@ -2,8 +2,9 @@ package services
 
 import (
 	"context"
-	"mateoops/linkoln/models"
-	"mateoops/linkoln/repositories"
+
+	"github.com/mateoops/linkoln/models"
+	"github.com/mateoops/linkoln/repositories"
 )
 
 type ShortService struct {
