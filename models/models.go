@@ -1,4 +1,4 @@
-package short
+package models
 
 type Short struct {
 	ID        int
