@@ -3,7 +3,10 @@ package handlers
 import (
 	"context"
 	"net/http"
+	"time"
 
+	"github.com/google/uuid"
+	"github.com/mateoops/linkoln/internal"
 	"github.com/mateoops/linkoln/models"
 	"github.com/mateoops/linkoln/repositories"
 	"github.com/mateoops/linkoln/services"
@@ -38,22 +41,18 @@ func (h *Handler) Encode(c *gin.Context) {
 		return
 	}
 
-	// bellow tests
-
 	// set ID
-	short.ID = 5
+	short.ID = uuid.NewString()
 	// set short
-	short.ShortUrl = "aksfjghfk"
+	short.ShortUrl = internal.GenerateShortID(6)
 	// set created
-	short.CreatedAt = "today"
-	// set Views to 0
-	short.Views = 0
+	short.CreatedAt = time.Now().String()
 
 	shortURL, err := h.svc.CreateShort(context.TODO(), short)
 	if err != nil {
 		c.IndentedJSON(http.StatusInternalServerError, short)
 	} else {
-		c.IndentedJSON(http.StatusCreated, shortURL)
+		c.IndentedJSON(http.StatusCreated, gin.H{"shortUrl": shortURL})
 	}
 
 }
@@ -65,8 +64,7 @@ func (h *Handler) Decode(c *gin.Context) {
 	if short.Url == "" {
 		c.IndentedJSON(http.StatusNotFound, "Object not found")
 	} else {
-		c.IndentedJSON(http.StatusOK, short)
+		//c.IndentedJSON(http.StatusOK, short)
+		c.Redirect(http.StatusFound, short.ShortUrl)
 	}
 }
-
-// func Redirect

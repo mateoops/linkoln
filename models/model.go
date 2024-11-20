@@ -1,7 +1,7 @@
 package models
 
 type Short struct {
-	ID        int
+	ID        string
 	Url       string
 	ShortUrl  string
 	CreatedAt string
