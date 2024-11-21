@@ -4,7 +4,7 @@ import axios from 'axios';
 
 
 export default function App() {
-  const [url, seturl] = useState('');
+  const [url, setUrl] = useState('');
   const [shortUrl, setShortUrl] = useState('');
 
   const handleSubmit = async (e) => {
@@ -30,7 +30,7 @@ export default function App() {
           label="Enter URL"
           variant="outlined"
           value={url}
-          onChange={(e) => seturl(e.target.value)}
+          onChange={(e) => setUrl(e.target.value)}
           sx={{ mb: 2 }}
         />
         <Button
