@@ -64,7 +64,6 @@ func (h *Handler) Decode(c *gin.Context) {
 	if short.Url == "" {
 		c.IndentedJSON(http.StatusNotFound, "Object not found")
 	} else {
-		//c.IndentedJSON(http.StatusOK, short)
-		c.Redirect(http.StatusFound, short.Url)
+		c.IndentedJSON(http.StatusOK, short)
 	}
 }
