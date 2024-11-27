@@ -1,0 +1,43 @@
+trigger:
+- main
+
+pool:
+  name: sam
+
+variables:
+  GOBIN:  '$(system.defaultWorkingDirectory)/bin'
+  GOPATH: '$(system.defaultWorkingDirectory)'
+
+stages:
+- stage: Build
+  jobs:
+  - job: PrepareAndBuild
+    steps:
+    - script: |
+        mkdir -p '$(GOBIN)'
+        echo '##vso[task.prependpath]$(GOBIN)'
+      displayName: 'Set up GO workspace'
+
+    - script: |
+        export PATH=$PATH:/usr/local/go/bin
+        export GOBIN='$(GOBIN)'
+        go version
+        if [ ! -f go.mod ]; then
+            go mod init github.com/mateoops/linkoln
+        fi
+        go mod tidy
+        go mod download
+        if [ -f Gopkg.toml ]; then
+            curl https://raw.githubusercontent.com/golang/dep/master/install.sh | sh
+            dep ensure
+        fi
+        go build -o '$(GOBIN)'
+      workingDirectory: '$(system.defaultWorkingDirectory)'
+      displayName: 'Build app'
+      
+    - task: PublishBuildArtifacts@1
+      inputs:
+        PathtoPublish: '$(GOBIN)'
+        ArtifactName: 'linkoln-app'
+        publishLocation: 'Container'
+      displayName: 'Publish app'
