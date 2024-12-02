@@ -42,6 +42,9 @@ stages:
         publishLocation: 'Container'
       displayName: 'Publish app'
 
+    workspace:
+      clean: all
+
 - stage: Containerization
   jobs:
   - job: Dockerize
