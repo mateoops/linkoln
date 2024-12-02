@@ -41,3 +41,15 @@ stages:
         ArtifactName: 'linkoln-app'
         publishLocation: 'Container'
       displayName: 'Publish app'
+
+- stage: Containerization
+  jobs:
+  - job: Dockerize
+    steps:
+    - task: Docker@2
+      displayName: Build an image
+      inputs:
+        repository: linkoln
+        command: build
+        Dockerfile: Dockerfile
+    
