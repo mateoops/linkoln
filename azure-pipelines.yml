@@ -6,7 +6,7 @@ pool:
 
 variables:
   GOBIN:  '$(system.defaultWorkingDirectory)/bin'
-  GOPATH: '$(system.defaultWorkingDirectory)'
+  GOPATH: '/opt/gopath'
 
 stages:
 - stage: Build
@@ -41,3 +41,22 @@ stages:
         ArtifactName: 'linkoln-app'
         publishLocation: 'Container'
       displayName: 'Publish app'
+      
+
+- stage: Containerization
+  jobs:
+  - job: Dockerize
+    steps:
+    - task: DownloadPipelineArtifact@2
+      inputs:
+        buildType: 'current'
+        artifactName: 'linkoln-app'
+        itemPattern: 'linkoln-app/linkoln'
+        targetPath: '$(system.defaultWorkingDirectory)'
+
+    - task: Docker@2
+      displayName: Build an image
+      inputs:
+        repository: linkoln
+        command: build
+        Dockerfile: Dockerfile
