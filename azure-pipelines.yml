@@ -53,7 +53,7 @@ stages:
       inputs:
         buildType: 'current'
         artifactName: 'linkoln-app'
-        itemPattern: 'linkoln'
+        itemPattern: 'linkoln-app/linkoln'
         targetPath: '$(Pipeline.Workspace)'
     - task: Docker@2
       displayName: Build an image
