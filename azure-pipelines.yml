@@ -54,7 +54,6 @@ stages:
         buildType: 'current'
         artifactName: 'linkoln-app'
         itemPattern: 'linkoln-app/linkoln'
-        targetPath: '$(Pipeline.Workspace)'
     - script: |
         ls -l
     - task: Docker@2
