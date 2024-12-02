@@ -6,7 +6,7 @@ pool:
 
 variables:
   GOBIN:  '$(system.defaultWorkingDirectory)/bin'
-  GOPATH: '$(system.defaultWorkingDirectory)'
+  GOPATH: '$(system.defaultWorkingDirectory)/gopath'
 
 stages:
 - stage: Build
