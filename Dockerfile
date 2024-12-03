@@ -5,7 +5,8 @@ WORKDIR /app
 COPY linkoln ./
 
 RUN addgroup -S appgroup && adduser -S appuser -G appgroup \
-    && chown -R appuser:appgroup /app
+    && chown -R appuser:appgroup /app \
+    && chmod +x /app/linkoln
 
 USER appuser
 
