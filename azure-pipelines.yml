@@ -58,7 +58,7 @@ stages:
       displayName: Build and push image
       inputs:
         containerRegistry: 'DockerHub'
-        repository: 'linkoln'
+        repository: 'mateoops/linkoln'
         command: 'buildAndPush'
         Dockerfile: 'Dockerfile'
     
