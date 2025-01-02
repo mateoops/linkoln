@@ -55,8 +55,10 @@ stages:
         targetPath: '$(system.defaultWorkingDirectory)'
 
     - task: Docker@2
-      displayName: Build an image
+      displayName: Build and push image
       inputs:
-        repository: linkoln
-        command: build
-        Dockerfile: Dockerfile
+        containerRegistry: 'DockerHub'
+        repository: 'linkoln'
+        command: 'buildAndPush'
+        Dockerfile: 'Dockerfile'
+    
